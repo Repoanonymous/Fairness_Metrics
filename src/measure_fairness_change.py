@@ -47,21 +47,50 @@ def measure_fairness(baseline,new):
     for i in range(baseline.shape[0]):
         for j in range(baseline.shape[1]):
             if baseline.index[i] in cm_zeros:
-                if abs(baseline.iloc[i,j]) > abs(new.iloc[i,j]):
+                if abs(baseline.iloc[i,j]) < abs(new.iloc[i,j]):
                     all_changes[datasets[j]]['FU'] += 1
-                elif abs(baseline.iloc[i,j]) < abs(new.iloc[i,j]):
+                elif abs(baseline.iloc[i,j]) > abs(new.iloc[i,j]):
                     all_changes[datasets[j]]['UF'] += 1
                 else:
                     all_changes[datasets[j]]['NC'] += 1
             elif baseline.index[i] in cm_ones:
-                print(i)
+                if abs(baseline.iloc[i,j]) == abs(new.iloc[i,j]):
+                    all_changes[datasets[j]]['NC'] += 1
+                elif (abs(baseline.iloc[i,j]) <= 1) & (abs(new.iloc[i,j]) <= 1):
+                    if 1 - abs(baseline.iloc[i,j]) > 1 - abs(new.iloc[i,j]):
+                        all_changes[datasets[j]]['UF'] += 1
+                    elif 1 - abs(baseline.iloc[i,j]) < 1 - abs(new.iloc[i,j]):
+                        all_changes[datasets[j]]['FU'] += 1
+                    else:
+                        print('here')
+                elif (abs(baseline.iloc[i,j]) <= 1) & (abs(new.iloc[i,j]) >= 1):
+                    if 1 - abs(baseline.iloc[i,j]) > abs(new.iloc[i,j]) - 1:
+                        all_changes[datasets[j]]['UF'] += 1
+                    elif 1 - abs(baseline.iloc[i,j]) < abs(new.iloc[i,j]) - 1:
+                        all_changes[datasets[j]]['FU'] += 1
+                    else:
+                        print('here')
+                elif (abs(baseline.iloc[i,j]) >= 1) & (abs(new.iloc[i,j]) <= 1):
+                    if abs(baseline.iloc[i,j]) - 1 > 1 - abs(new.iloc[i,j]):
+                        all_changes[datasets[j]]['UF'] += 1
+                    elif abs(baseline.iloc[i,j]) - 1 < 1 - abs(new.iloc[i,j]):
+                        all_changes[datasets[j]]['FU'] += 1
+                    else:
+                        print('here')
+                elif (abs(baseline.iloc[i,j]) >= 1) & (abs(new.iloc[i,j]) >= 1):
+                    if abs(baseline.iloc[i,j]) - 1 > abs(new.iloc[i,j]) - 1:
+                        all_changes[datasets[j]]['UF'] += 1
+                    elif abs(baseline.iloc[i,j]) - 1 < abs(new.iloc[i,j]) - 1:
+                        all_changes[datasets[j]]['FU'] += 1
+                    else:
+                        print('here')
     all_changes_df = pd.DataFrame.from_dict(all_changes, orient = 'index')
     print(all_changes_df)
     return all_changes_df
     
 
 if __name__ == "__main__":
-    path = '../results'
+    path = 'results'
     baseline = pd.DataFrame()
     meta = pd.DataFrame()
     reweighing = pd.DataFrame()
@@ -80,9 +109,6 @@ if __name__ == "__main__":
     meta.columns = datasets
     reweighing.columns = datasets
 
-    print(baseline)
-
-    print(meta)
-
-
     measure_fairness(baseline,reweighing)
+    measure_fairness(baseline,meta)
+    

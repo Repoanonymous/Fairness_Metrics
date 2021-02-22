@@ -15,7 +15,7 @@ def load_data(dataset, path):
     results_bm_sorted = {}
 
     
-    results = pkl.load(open(path + '/' + dataset + '_final_results.pkl', 'rb'))
+    results = pkl.load(open(path + '/' + dataset + '.pkl', 'rb'))
     
     results_cm_base = results['cm']['baseline']
     results_cm_meta = results['cm']['Meta']
@@ -70,7 +70,7 @@ def lable_fairness(combined_results, _type):
     
 
 if __name__ == "__main__":
-    path = '../results'
+    path = 'results'
     combined_results_cm = pd.DataFrame()
     combined_results_bm = pd.DataFrame()
     datasets = ['Adult','Compas','Health','German','bank','Titanic','Student']

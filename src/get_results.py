@@ -41,7 +41,7 @@ class ThreadWithReturnValue(Thread):
         return self._return
 
 def load_data(dataset, label_name, protected_attr):
-    path = '../data'
+    path = 'data'
     if dataset == 'Adult':
         dataset_orig = pd.read_csv(path + '/adult.data.csv')
 
@@ -538,7 +538,7 @@ def baseline_model(X_train,X_test,y_train,y_test, protected_attr, label_name):
     return cm, bm
 
 def run(dataset, protected_attr, label_name, cm_metrics_list, bm_metrics_list):
-    path = '../results/'
+    path = 'results/'
     results_cm_basaeline = {}
     results_cm_PrejudiceRemover = {}
     results_cm_Reweighing = {}

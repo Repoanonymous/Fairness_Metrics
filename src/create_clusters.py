@@ -19,7 +19,7 @@ def load_data(datasets, path):
     results_bm_sorted = {}
 
     for dataset in datasets:
-        results = pkl.load(open(path + '/' + dataset + '_final_results.pkl', 'rb'))
+        results = pkl.load(open(path + '/' + dataset + '.pkl', 'rb'))
         
         results_cm_base = results['cm']['baseline']
         results_cm_meta = results['cm']['Meta']
@@ -142,7 +142,7 @@ def create_bm_clusters(results_bm_sorted):
 
 
 if __name__ == "__main__":
-    path = '../results'
+    path = 'results'
     datasets = ['Adult','Compas','Health','German','bank','Titanic','Student']
     results_cm_sorted, results_bm_sorted = load_data(datasets, path)
     create_cm_clusters(results_cm_sorted)
