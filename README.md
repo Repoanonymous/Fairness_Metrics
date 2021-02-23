@@ -14,8 +14,9 @@ In summary, to dramatically simplify the fairness testing problem, we recommend 
 
 # Tutorial
 
-1. To run create the results for analysis run initial_run.sh file. This will use 7 datasets on 3 models used in this study to generate Baseline, Reweighing and Meta Fair Classifier models. This task requires around 24 hours to complete.
-2. To generate the results for RQ1 Table 5 and Table 6, run RQ1.sh
-3. To generate the clusters as described in RQ2 Table 5 and Table 6, run RQ2.sh
-4. To generate the results of RQ3 Table 8, run RQ3.sh
-5. To generate the sensitivity results of RQ4 Table 7, run RQ4.sh
+1. Install python packages from requirements.txt file (pip install requirements.txt)
+2. To run create the results for analysis run initial_run.sh file. This will use 7 datasets on 3 models used in this study to generate Baseline, Reweighing and Meta Fair Classifier models. This task requires around 24 hours to complete.
+3. To generate the results for RQ1 Table 5 and Table 6, run RQ1.sh
+4. To generate the clusters as described in RQ2 Table 5 and Table 6, run RQ2.sh
+5. To generate the results of RQ3 Table 8, run RQ3.sh
+6. To generate the sensitivity results of RQ4 Table 7, run RQ4.sh
