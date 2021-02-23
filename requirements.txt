@@ -1,0 +1,7 @@
+# This file is contains pip packages required for executing this code
+
+scipy
+numpy
+pandas
+aif360
+sklearn
