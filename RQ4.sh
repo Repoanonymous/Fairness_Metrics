@@ -1,1 +1,1 @@
-pythin src/get_sensitivity.py
+python src/get_sensitivity.py
